@@ -28,7 +28,20 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('iVet'),
+        leading: IconButton(
+            icon: Icon(
+              Icons.border_all_rounded,
+              size: 32,
+            ),
+            onPressed: () {}),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                size: 32,
+              ),
+              onPressed: () {})
+        ],
       ),
       body: IndexedStack(
         index: currentIndex,
@@ -43,23 +56,27 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Color.fromRGBO(255, 101, 132, 1),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        iconSize: 40,
-        showUnselectedLabels: false,
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.blueAccent,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Conta',
-          )
-        ],
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        elevation: 0,
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          iconSize: 40,
+          showUnselectedLabels: false,
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.blueAccent,
+          onTap: (index) => setState(() => currentIndex = index),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Conta',
+            )
+          ],
+        ),
       ),
     );
   }
