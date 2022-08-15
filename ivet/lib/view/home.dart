@@ -10,11 +10,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentIndex = 0;
   final screens = [
-    Center(
-      child: Text(
-        'Home',
-        style: TextStyle(fontSize: 60),
-      ),
+    TabBarView(
+      children: [
+        mostrarTela('Atividade'),
+        mostrarTela('Clínicas'),
+        mostrarTela('Consultas'),
+        mostrarTela('Carteira de vacinação'),
+      ],
     ),
     Center(
       child: Text(
@@ -26,58 +28,85 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Icon(
-              Icons.border_all_rounded,
-              size: 32,
-            ),
-            onPressed: () {}),
-        actions: [
-          IconButton(
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
               icon: Icon(
-                Icons.notifications_none,
+                Icons.border_all_rounded,
                 size: 32,
               ),
-              onPressed: () {})
-        ],
-      ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: screens,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(
-          Icons.favorite,
-          size: 35,
-        ),
-        backgroundColor: Color.fromRGBO(255, 101, 132, 1),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        elevation: 0,
-        child: BottomNavigationBar(
-          currentIndex: currentIndex,
-          iconSize: 40,
-          showUnselectedLabels: false,
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.blueAccent,
-          onTap: (index) => setState(() => currentIndex = index),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Conta',
-            )
+              onPressed: () {}),
+          actions: [
+            IconButton(
+                icon: Icon(
+                  Icons.notifications_none,
+                  size: 32,
+                ),
+                onPressed: () {})
           ],
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                text: 'Atividade',
+              ),
+              Tab(
+                text: 'Clinicas',
+              ),
+              Tab(
+                text: 'Consultas',
+              ),
+              Tab(
+                text: 'Carteira de vacinação',
+              )
+            ],
+            isScrollable: true,
+          ),
+        ),
+        body: IndexedStack(
+          index: currentIndex,
+          children: screens,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(
+            Icons.favorite,
+            size: 35,
+          ),
+          backgroundColor: Color.fromRGBO(255, 101, 132, 1),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          elevation: 0,
+          child: BottomNavigationBar(
+            currentIndex: currentIndex,
+            iconSize: 40,
+            showUnselectedLabels: false,
+            backgroundColor: Colors.white,
+            selectedItemColor: Colors.blueAccent,
+            onTap: (index) => setState(() => currentIndex = index),
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Conta',
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+Widget mostrarTela(String text) => Center(
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 28),
+      ),
+    );
