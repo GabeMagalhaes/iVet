@@ -5,13 +5,13 @@ class WelcomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body: _buildContent()
+      body: _buildContent(context)
     );
   }
 }
 
 
-Widget _buildContent(){
+Widget _buildContent(BuildContext context){
   return Container(
     // padding: EdgeInsets.all(5),
     color: Color.fromARGB(255, 221, 228, 235),
@@ -36,11 +36,9 @@ Widget _buildContent(){
           height: 100,
           ),
         ),
-        Container(
-          color: Colors.red,
-          child: SizedBox(
-          height: 100,
-          ),
+        ElevatedButton(
+          onPressed: () => Navigator.pushNamed(context, '/login'),
+          child: Text('Começe Já'),
         ),
       ],
     ),
