@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ivet/view/atividade.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _HomeState extends State<Home> {
   final screens = [
     TabBarView(
       children: [
-        mostrarTela('Atividade'),
+        Atividade(),
         mostrarTela('Clínicas'),
         mostrarTela('Consultas'),
         mostrarTela('Carteira de vacinação'),
