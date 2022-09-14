@@ -16,16 +16,22 @@ Widget _buildContent(BuildContext context) {
         Container(
           height: 570,
           color: Color.fromARGB(255, 234, 237, 239),
-          child: Image.asset(
+          child: Padding(
+            padding: EdgeInsets.only(left: 10.5, right: 10.5, top: 125.5),
+            child: Image.asset(
             'images/welcomeimg.png',
             height: 255.19,
             width: 355.59,
+            ), 
           ),
         ),
 
       Expanded(
         child: Container(
-          color: Color.fromARGB(255, 255, 255, 255),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(555)),
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
           child: Column(
             children: <Widget>[
               SizedBox(height: 35),
@@ -43,7 +49,7 @@ Widget _buildContent(BuildContext context) {
                 thickness: 0.5,
                 indent: 40,
                 endIndent: 40,
-                color: Color.fromARGB(255, 210, 209, 209),
+                color: Color.fromARGB(255, 197, 196, 196),
               ),
               SizedBox(height: 20,),
               ElevatedButton(
@@ -54,17 +60,20 @@ Widget _buildContent(BuildContext context) {
                     fontSize: 20,
                   ),
                 ),
-                style:ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 40, 93, 216),
-                  fixedSize: Size(295.0, 50.0),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 40, 93, 216)),
+                  fixedSize: MaterialStateProperty.all(Size(300.0 ,50.0)),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(55.0)
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
         ),
       ),
-
- 
 
     ],
   );
