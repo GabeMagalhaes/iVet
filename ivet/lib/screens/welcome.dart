@@ -12,7 +12,6 @@ Widget _buildContent(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: <Widget>[
-
         Container(
           height: 570,
           color: Color.fromARGB(255, 234, 237, 239),
@@ -25,11 +24,10 @@ Widget _buildContent(BuildContext context) {
             ), 
           ),
         ),
-
       Expanded(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(555)),
+            // borderRadius: BorderRadius.all(Radius.circular(555)), <- ARRUMAR
             color: Color.fromARGB(255, 255, 255, 255),
           ),
           child: Column(
@@ -41,17 +39,17 @@ Widget _buildContent(BuildContext context) {
                   fontSize: 25,
                 ),
               ),
-              SizedBox(height:25),
+              SizedBox(height:30),
               Text("Assuma o controle de saúde do seu pet e\n encontre uma clinica ao seu alcance"),
               SizedBox(height: 22,),
               Divider(
-                height: 10,
+                height: 8,
                 thickness: 0.5,
-                indent: 40,
-                endIndent: 40,
+                indent: 60,
+                endIndent: 60,
                 color: Color.fromARGB(255, 197, 196, 196),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 35,),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/login'),
                 child: Text(
@@ -74,7 +72,6 @@ Widget _buildContent(BuildContext context) {
           ),
         ),
       ),
-
     ],
   );
 }
