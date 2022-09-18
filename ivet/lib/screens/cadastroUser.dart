@@ -13,15 +13,35 @@ Widget build_Content(BuildContext context){
     //crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
       Padding(
-        padding: EdgeInsets.only(top: 90),
-        child: Text(
-          'Cadastre-se',
-          style: TextStyle(
-            fontSize: 32,
-          ),
+        padding: EdgeInsets.only(top: 55, left: 22),
+        child: Row(
+          children: <Widget>[
+            new InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, '/login');
+              },
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.chevron_left_outlined),
+                  new Text(
+                    'Voltar',
+                    style: TextStyle(
+                    fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
-
+      SizedBox(height:35),
+      Text(
+        'Cadastre-se',
+        style: TextStyle(
+        fontSize: 32,
+        ),
+      ),
       Padding(
         padding: EdgeInsets.only(top:8),
         child: Text(
@@ -123,7 +143,7 @@ Widget build_Content(BuildContext context){
             ),
             SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, ''),
+              onPressed: (){},
               child: Text(
                 'Cadastrar',
                 style: TextStyle(
