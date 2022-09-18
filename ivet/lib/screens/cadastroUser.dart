@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen();
+class CadastroUser extends StatelessWidget {
+  const CadastroUser();
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: build_Content(context));
@@ -13,35 +13,52 @@ Widget build_Content(BuildContext context){
     //crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
       Padding(
-        padding: EdgeInsets.only(top: 80),
-        child: Image.asset(
-          'images/registerimg.png',
-          height: 137.42,
-          width: 132.22,
+        padding: EdgeInsets.only(top: 90),
+        child: Text(
+          'Cadastre-se',
+          style: TextStyle(
+            fontSize: 32,
+          ),
         ),
       ),
-      Text(
-        'Bem Vindo',
-        style: TextStyle(
-          fontSize: 32,
-        ),
-      ),
+
       Padding(
         padding: EdgeInsets.only(top:8),
         child: Text(
-          'Por favor, faça login para \ncontinuar',
+          'Por favor, preencha o campo abaixo \npara fazer o cadastro',
           style: TextStyle(
             fontSize: 18,
           ),
         ),
       ),
-       SizedBox(height: 20),
+      SizedBox(height: 20),
       Padding(
         padding:EdgeInsets.only(right: 38,left: 38),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Row(
+              children: <Widget>[
+                Text(
+                  'Nome',
+                  style: TextStyle(fontSize: 15),
+                ),
+              ],
+            ),
+            SizedBox(height: 5),
+            TextFormField(
+              style: TextStyle(fontSize: 11),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color:Color.fromARGB(255, 238, 238, 238))
+                ),
+                fillColor: Color.fromARGB(255, 238, 238, 238),
+                filled: true,
+              ),
+            ),
+            SizedBox(height: 25),
             Row(
               children: <Widget>[
                 Text(
@@ -52,7 +69,7 @@ Widget build_Content(BuildContext context){
             ),
             SizedBox(height: 5),
             TextFormField(
-              style: TextStyle(fontSize: 13),
+              style: TextStyle(fontSize: 11),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
@@ -73,7 +90,7 @@ Widget build_Content(BuildContext context){
             ),
             SizedBox(height: 5),
             TextFormField(
-              style: TextStyle(fontSize: 13),
+              style: TextStyle(fontSize: 11),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
@@ -83,29 +100,32 @@ Widget build_Content(BuildContext context){
                 filled: true,
               ),
             ),
-            SizedBox(height: 10),
+           SizedBox(height: 25),
             Row(
               children: <Widget>[
-                new InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, '/cadastroUser');
-                  },
-                  child: new Text('Não tenho Login'),
-                ),
-                Spacer(),
-                new InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, "");
-                  },
-                  child: new Text('esqueceu a senha?'),
+                Text(
+                  'Confirme a senha',
+                  style: TextStyle(fontSize: 15),
                 ),
               ],
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 5),
+            TextFormField(
+              style: TextStyle(fontSize: 11),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color:Color.fromARGB(255, 238, 238, 238))
+                ),
+                fillColor: Color.fromARGB(255, 238, 238, 238),
+                filled: true,
+              ),
+            ),
+            SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/home'),
+              onPressed: () => Navigator.pushNamed(context, ''),
               child: Text(
-                'Login',
+                'Cadastrar',
                 style: TextStyle(
                   fontSize: 21,
                 ),
