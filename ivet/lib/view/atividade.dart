@@ -84,79 +84,82 @@ class Atividade extends StatelessWidget {
 }
 
 Widget buildCard() => Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+  elevation: 5,
+  child: Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                Text(
-                  'Proxima consulta',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 50,
-                )
-              ],
+            Text(
+              'Proxima consulta',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Row(
-              children: [
-                Text(
-                  'Clinica: Z',
-                  style: TextStyle(fontSize: 11),
-                ),
-                SizedBox(
-                  width: 113,
-                ),
-              ],
+            SizedBox(
+              width: 50,
+            )
+          ],
+        ),
+        SizedBox(height: 2),
+        Row(
+          children: [
+            Text(
+              'Clinica: Z',
+              style: TextStyle(fontSize: 11),
             ),
-            Row(
-              children: [
-                Text(
-                  'Doutor: X',
-                  style: TextStyle(fontSize: 11),
-                ),
-                SizedBox(
-                  width: 113,
-                ),
-              ],
+            SizedBox(
+              width: 113,
             ),
-            Row(
+          ],
+        ),
+        SizedBox(height: 2),
+        Row(
+          children: [
+            Text(
+              'Doutor: X',
+              style: TextStyle(fontSize: 11),
+            ),
+            SizedBox(
+              width: 113,
+            ),
+          ],
+        ),
+        SizedBox(height: 5),
+        Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Data:',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 113,
-                        )
-                      ],
+                    Text(
+                      'Data:',
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          '10/08/2022',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 0,
-                        )
-                      ],
+                    SizedBox(
+                      width: 113,
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '10/08/2022',
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(
+                      width: 0,
+                    )
                   ],
                 ),
               ],
             ),
           ],
         ),
-      ),
-    );
+      ],
+    ),
+  ),
+);

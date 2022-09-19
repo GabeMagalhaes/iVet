@@ -94,9 +94,7 @@ Widget build_Content(BuildContext context){
                 ),
                 Spacer(),
                 new InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, "");
-                  },
+                  onTap: (){},
                   child: new Text('esqueceu a senha?'),
                 ),
               ],

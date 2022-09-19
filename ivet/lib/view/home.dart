@@ -33,24 +33,36 @@ class _HomeState extends State<Home> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 70,
+          backgroundColor: Colors.white,
           leading: IconButton(
               icon: Icon(
                 Icons.border_all_rounded,
                 size: 32,
+                color: Colors.blue,
               ),
               onPressed: () {}),
+          title: Text(
+            "NOME DO USER",
+            style: TextStyle(
+              color: Colors.black
+            ),
+          ),
           actions: [
             IconButton(
                 icon: Icon(
                   Icons.notifications_none,
                   size: 32,
+                  color: Colors.blue
                 ),
                 onPressed: () {})
           ],
           bottom: TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Color.fromARGB(255, 157, 157, 157),
             tabs: [
               Tab(
-                text: 'Atividade',
+                text:'Atividade',
               ),
               Tab(
                 text: 'Clinicas',
@@ -65,10 +77,12 @@ class _HomeState extends State<Home> {
             isScrollable: true,
           ),
         ),
+
         body: IndexedStack(
           index: currentIndex,
           children: screens,
         ),
+
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
@@ -78,6 +92,7 @@ class _HomeState extends State<Home> {
           ),
           backgroundColor: Color.fromRGBO(255, 101, 132, 1),
         ),
+        
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           elevation: 0,

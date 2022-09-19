@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "556510451754",
+    "project_id": "ivet-db2022",
+    "storage_bucket": "ivet-db2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556510451754:android:f449274431df3e46e7cb53",
+        "android_client_info": {
+          "package_name": "com.example.ivet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556510451754-pl1g02ahlqdvt0qd6slvbrb3okemtqo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4rgjJVYn9C_wqRqYIPTbuDNJG0ZEdTqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556510451754-pl1g02ahlqdvt0qd6slvbrb3okemtqo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
