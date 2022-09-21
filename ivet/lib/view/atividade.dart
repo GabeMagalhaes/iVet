@@ -8,12 +8,12 @@ class Atividade extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 35, top: 20, right: 35),
+      padding: const EdgeInsets.only(left: 25, top: 20, right: 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 130,
+            height: 145,
             child: ListView.separated(
                 padding: EdgeInsets.only(),
                 scrollDirection: Axis.horizontal,
@@ -22,7 +22,7 @@ class Atividade extends StatelessWidget {
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(
-                    width: 20,
+                    width: 15,
                   );
                 },
                 itemCount: 4),
@@ -43,8 +43,8 @@ class Atividade extends StatelessWidget {
                   child: ListTile(
                 leading: Image.asset(
                   'images/noticia1.png',
-                  width: 55,
-                  height: 55,
+                  width: 60,
+                  height: 60,
                 ),
                 title: Text(
                   'Campanha de vacinação',
@@ -56,13 +56,14 @@ class Atividade extends StatelessWidget {
                 ),
                 trailing: IconButton(
                     icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
-              )),
+                )
+              ),
               Card(
-                  child: ListTile(
+                child: ListTile(
                 leading: Image.asset(
                   'images/noticia2.png',
                   width: 55,
-                  height: 55,
+                  height: 60,
                 ),
                 title: Text(
                   'Campanha de castração',
@@ -74,7 +75,27 @@ class Atividade extends StatelessWidget {
                 ),
                 trailing: IconButton(
                     icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
-              )),
+                )
+              ),
+              Card(
+                child: ListTile(
+                leading: Image.asset(
+                  'images/noticia3.png',
+                  width: 55,
+                  height: 60,
+                ),
+                title: Text(
+                  'Campanha de adoção',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium.',
+                  style: TextStyle(fontSize: 11),
+                ),
+                trailing: IconButton(
+                    icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
+                )
+              ),
             ],
           )
         ],

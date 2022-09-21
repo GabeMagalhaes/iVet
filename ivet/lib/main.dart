@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ivet/screens/login.dart';
 import 'package:ivet/screens/welcome.dart';
+import 'package:ivet/screens/carteirinha.dart';
 import 'package:ivet/view/home.dart';
 import 'package:ivet/screens/cadastroUser.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/login':(context) => LoginScreen(),
         '/home' :(context) => Home(),
         '/cadastroUser' :(context) => CadastroUser(),
+        '/carteirinha' :(context) => Carteirinha(),
         },
       );
   }

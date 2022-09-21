@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ivet/view/Consultas.dart';
 import 'package:ivet/view/atividade.dart';
+import 'package:ivet/view/clinicas.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,9 +16,10 @@ class _HomeState extends State<Home> {
     TabBarView(
       children: [
         Atividade(),
-        mostrarTela('Clínicas'),
-        mostrarTela('Consultas'),
+        Clinicas(),
+        Consultas(),
         mostrarTela('Carteira de vacinação'),
+        mostrarTela('Adoção')
       ],
     ),
     Center(
@@ -30,7 +33,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
@@ -72,6 +75,9 @@ class _HomeState extends State<Home> {
               ),
               Tab(
                 text: 'Carteira de vacinação',
+              ),
+              Tab(
+                text: 'Adoção',
               )
             ],
             isScrollable: true,
