@@ -4,7 +4,9 @@ class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _buildContent(context));
+    return Scaffold(
+      body: _buildContent(context)
+    );
   }
 }
 
