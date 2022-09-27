@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
                 text: 'Clinicas',
               ),
               Tab(
-                text: 'Consultas',
+                text: 'Histórico',
               ),
               Tab(
                 text: 'Carteira de vacinação',

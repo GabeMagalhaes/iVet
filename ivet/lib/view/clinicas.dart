@@ -56,7 +56,7 @@ class Clinicas extends StatelessWidget {
 
 Widget buildVets() => Container(
   child: Padding(
-   padding: const EdgeInsets.only(right: 8.0, left: 8.00),
+   padding: const EdgeInsets.only(right: 8.0, left: 8.0),
     child: Column(
       children: <Widget>[
         Card(
