@@ -76,7 +76,7 @@ Widget build_Content(BuildContext context){
       Padding(
         padding: EdgeInsets.only(top:15),
         child: Text(
-          'Por favor, preencha o campo abaixo \npara fazer o cadastro',
+          'Por favor, preencha os campo abaixos \npara fazer o cadastro',
           style: TextStyle(
             fontSize: 18,
           ),
@@ -317,19 +317,14 @@ Widget comBuild_Content(BuildContext context){
           ],
         ),
       ),
-      SizedBox(height:35),
-      Text(
-        'Cadastre-se',
-        style: TextStyle(
-        fontSize: 32,
-        ),
-      ),
+      SizedBox(height:30),
+
       Padding(
-        padding: EdgeInsets.only(top:15),
+        padding: EdgeInsets.only(top:15, left: 40),
         child: Text(
-          'Por favor, preencha o campo abaixo \npara fazer o cadastro',
+          'Por favor, continue preenchendo os campos abaixo para continuar o seu cadastro',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 20,
           ),
         ),
       ),

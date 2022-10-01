@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ivet/screens/welcome.dart';
 import 'package:ivet/view/Consultas.dart';
 import 'package:ivet/view/atividade.dart';
 import 'package:ivet/view/clinicas.dart';
@@ -45,9 +46,13 @@ class _HomeState extends State<Home> {
     String userID = userAuthUID.toString();
     // Referecia do Documento do usuario (Firestore Database)
     DocumentReference<Map<String, dynamic>> userDocRef =fdb.collection('Users').doc(userID);
-    // Instanciando os Snapshots da coleçåo Users em uma Stream
-    final Stream<QuerySnapshot> _usersStream = users.snapshots();
+    // Instanciando o Snapshots do Documento do User atual em uma Stream
     final Stream<DocumentSnapshot<Map<String, dynamic>>> _userStream = userDocRef.snapshots();
+
+    void signOut() async{
+      await FirebaseAuth.instance.signOut();
+      Navigator.pushNamed(context, '/login');
+  }
 
   
     return StreamBuilder<DocumentSnapshot>(
@@ -73,11 +78,12 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.white,
               leading: IconButton(
                   icon: Icon(
-                    Icons.border_all_rounded,
+                    Icons.logout_outlined,
                     size: 32,
                     color: Colors.blue,
                   ),
-                  onPressed: () {}),
+                  onPressed: signOut
+                  ),
               title: Text(
                 name, 
                style: TextStyle(
