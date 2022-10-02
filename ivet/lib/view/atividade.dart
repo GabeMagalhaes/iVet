@@ -21,124 +21,124 @@ class Atividade extends StatelessWidget {
   CollectionReference pets = fdb.collection('Pets');
   CollectionReference vets = fdb.collection('Vets');
   CollectionReference clinics = fdb.collection('Clinics');
-  Stream<QuerySnapshot<Object?>> _visitsStream = visits.where('userID', isEqualTo: userID).snapshots();
+  Stream<QuerySnapshot<Object?>> _visitsStream = visits.where('userID', isEqualTo: userID).where('closedVisit', isEqualTo: false).snapshots();
   
   
-    return Padding(
-      padding: const EdgeInsets.only(left: 25, top: 20, right: 25),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Próximas consultas :',
-            style: TextStyle(fontSize: 20),
-            ),
-          SizedBox(height: 12),
-          SizedBox(
-            height: 155,
-            child: StreamBuilder<QuerySnapshot>(
-              stream: _visitsStream,
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-                if (snapshot.hasError) {
-                  return Text('Something went wrong');
-                }
-                if(!snapshot.hasData) {
-                  return Center(child: Text('Você ainda não possui consultas marcadas'));
-                }
-                
-                return ListView(
-                  padding: EdgeInsets.only(),
-                  scrollDirection: Axis.horizontal,
-                  children: snapshot.data!.docs.map((document) {
-
-                    Timestamp visitTimestamp = document['visitDate'];
-                    DateTime visitDatetime = visitTimestamp.toDate();
-                    DateFormat formatterDate = DateFormat('dd/MM/yyyy');
-                    DateFormat formatterHour = DateFormat('HH:mm');
-                    String visitDay = formatterDate.format(visitDatetime);
-                    String visitHour = formatterHour.format(visitDatetime);
-
-                    return Card(
-                      elevation: 5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Pet: ${document['petName']}',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 2),
-                            Row(
-                              children: [
-                                Text(
-                                  'Clinica: ${document['clinicName']}',
-                                  style: TextStyle(fontSize: 11),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 2),
-                            Row(
-                              children: [
-                                Text(
-                                  'Vet: ${document['vetName']}',
-                                  style: TextStyle(fontSize: 11),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Data:',
-                                          style: TextStyle(
-                                              fontSize: 18, fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 2),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          visitDay,
-                                          style: TextStyle(
-                                              fontSize: 18, fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 3),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'as ${visitHour}',
-                                          style: TextStyle(
-                                              fontSize: 16, fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                );                
+  return Padding(
+    padding: const EdgeInsets.only(left: 25, top: 20, right: 25),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Próximas consultas :',
+          style: TextStyle(fontSize: 20),
+          ),
+        SizedBox(height: 12),
+        SizedBox(
+          height: 155,
+          child: StreamBuilder<QuerySnapshot>(
+            stream: _visitsStream,
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
               }
-            )
+              if(!snapshot.hasData) {
+                return Center(child: Text('Você ainda não possui consultas marcadas'));
+              }
+              
+              return ListView(
+                padding: EdgeInsets.only(),
+                scrollDirection: Axis.horizontal,
+                children: snapshot.data!.docs.map((document) {
+
+                  Timestamp visitTimestamp = document['visitDate'];
+                  DateTime visitDatetime = visitTimestamp.toDate();
+                  DateFormat formatterDate = DateFormat('dd/MM/yyyy');
+                  DateFormat formatterHour = DateFormat('HH:mm');
+                  String visitDay = formatterDate.format(visitDatetime);
+                  String visitHour = formatterHour.format(visitDatetime);
+
+                  return Card(
+                    elevation: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Pet: ${document['petName']}',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 2),
+                          Row(
+                            children: [
+                              Text(
+                                'Clinica: ${document['clinicName']}',
+                                style: TextStyle(fontSize: 11),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 2),
+                          Row(
+                            children: [
+                              Text(
+                                'Vet: ${document['vetName']}',
+                                style: TextStyle(fontSize: 11),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Data:',
+                                        style: TextStyle(
+                                            fontSize: 18, fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 2),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        visitDay,
+                                        style: TextStyle(
+                                            fontSize: 18, fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 3),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'as ${visitHour}',
+                                        style: TextStyle(
+                                            fontSize: 16, fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              );                
+            }
+          )
           ),
           SizedBox(
             height: 50,
@@ -213,7 +213,6 @@ class Atividade extends StatelessWidget {
               ),
             ],
           )
-          
         ],
       ),
     );

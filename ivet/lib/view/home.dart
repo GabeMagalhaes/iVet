@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ivet/screens/welcome.dart';
 import 'package:ivet/view/Consultas.dart';
+import 'package:ivet/view/adocao.dart';
 import 'package:ivet/view/atividade.dart';
+import 'package:ivet/view/carteirinha.dart';
 import 'package:ivet/view/clinicas.dart';
 
 class Home extends StatefulWidget {
@@ -21,16 +25,18 @@ class _HomeState extends State<Home> {
         Atividade(),
         Clinicas(),
         Consultas(),
-        mostrarTela('Carteira de vacinação'),
-        mostrarTela('Adoção')
+        Carteirinha(),
+        Adocao(),
       ],
     ),
+
     Center(
       child: Text(
-        'Conta',
+        'SATAN',
         style: TextStyle(fontSize: 60),
       ),
     ),
+
   ];
 
   @override
@@ -99,6 +105,7 @@ class _HomeState extends State<Home> {
                     ),
                     onPressed: () {})
               ],
+              
               bottom: TabBar(
                 labelColor: Colors.black,
                 unselectedLabelColor: Color.fromARGB(255, 157, 157, 157),
@@ -167,9 +174,3 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget mostrarTela(String text) => Center(
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 28),
-      ),
-    );

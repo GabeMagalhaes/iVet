@@ -53,8 +53,6 @@ Widget build_Content(BuildContext context){
         ),
       ),
       SizedBox(height: 20),
-
-
       Form(
         key: _formKey,
         child: Padding(

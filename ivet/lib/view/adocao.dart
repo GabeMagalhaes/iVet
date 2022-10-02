@@ -4,17 +4,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Consultas extends StatelessWidget {
-  const Consultas({Key? key}) : super(key: key);
+class Adocao extends StatelessWidget{
+  const Adocao({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     FirebaseFirestore fdb = FirebaseFirestore.instance;
-    String userAuthUID = FirebaseAuth.instance.currentUser!.uid;
-    String userID = userAuthUID.toString();
-    CollectionReference visits = fdb.collection('Visits');
-    Stream<QuerySnapshot<Object?>> _closedVisitsStream = visits.where('userID', isEqualTo: userID).where('closedVisit', isEqualTo: true).snapshots();
+    CollectionReference fosterPets = fdb.collection('FosterPets');
+    Stream<QuerySnapshot<Object?>> _fosterStream = fosterPets.where('adopted',isEqualTo: false).snapshots();
+
 
     return Padding(
       padding: const EdgeInsets.only(left: 25, top: 20, right: 25),
@@ -22,7 +20,7 @@ class Consultas extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Ultimas Consultas',
+            'Adoções :',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -31,7 +29,7 @@ class Consultas extends StatelessWidget {
           SizedBox(
             height: 400,
             child: StreamBuilder<QuerySnapshot>(
-              stream: _closedVisitsStream,
+              stream: _fosterStream,
               builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
                 if (snapshot.hasError) {
                   return Text('Something went wrong');
@@ -44,12 +42,12 @@ class Consultas extends StatelessWidget {
                   scrollDirection: Axis.vertical,   
                   children: snapshot.data!.docs.map((document) {
 
-                    Timestamp visitTimestamp = document['visitDate'];
-                    DateTime visitDatetime = visitTimestamp.toDate();
+                    Timestamp pubTimestamp = document['pubDate'];
+                    DateTime pubDatetime = pubTimestamp.toDate();
                     DateFormat formatterDate = DateFormat('dd/MM/yyyy');
                     DateFormat formatterHour = DateFormat('HH:mm');
-                    String visitDay = formatterDate.format(visitDatetime);
-                    String visitHour = formatterHour.format(visitDatetime);
+                    String pubDay = formatterDate.format(pubDatetime);
+                    String pubHour = formatterHour.format(pubDatetime);
 
                   return Container(
                     child: Padding(
@@ -64,12 +62,12 @@ class Consultas extends StatelessWidget {
                               //   height: 60,
                               // ),
                               title: Text(
-                               '${document['clinicName']} - ${visitDay}',
+                               document['fosterName'],
                                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
-                                document["description"],
-                                style: TextStyle(fontSize: 11),
+                                '${document['species']} - ${document['genre']} - ${document['age']}',
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                               trailing: IconButton(
                                   icon: Icon(Icons.arrow_forward_ios), onPressed: () {}),
