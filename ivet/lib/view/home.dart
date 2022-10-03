@@ -9,6 +9,7 @@ import 'package:ivet/view/adocao.dart';
 import 'package:ivet/view/atividade.dart';
 import 'package:ivet/view/carteirinha.dart';
 import 'package:ivet/view/clinicas.dart';
+import 'package:ivet/view/pets.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,9 +24,10 @@ class _HomeState extends State<Home> {
     TabBarView(
       children: [
         Atividade(),
+        myPets(),
         Clinicas(),
         Consultas(),
-        Carteirinha(),
+        //Carteirinha(),
         Adocao(),
       ],
     ),
@@ -114,14 +116,17 @@ class _HomeState extends State<Home> {
                     text:'Atividade',
                   ),
                   Tab(
-                    text: 'Clinicas',
+                    text: 'Meus Pets',
+                  ),
+                  Tab(
+                    text: 'Agendar Consulta',
                   ),
                   Tab(
                     text: 'Histórico',
                   ),
-                  Tab(
-                    text: 'Carteira de vacinação',
-                  ),
+                  // Tab(
+                  //   text: 'Carteira de vacinação',
+                  // ),
                   Tab(
                     text: 'Adoção',
                   )

@@ -15,11 +15,7 @@ class Agendar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore fdb = FirebaseFirestore.instance;
-    String userAuthUID = FirebaseAuth.instance.currentUser!.uid;
-    String userID = userAuthUID.toString();
     CollectionReference clinics = fdb.collection('Clinics');
-    CollectionReference pets = fdb.collection('Pets');
-    CollectionReference vets = fdb.collection('Vets');
     DocumentReference<Map<String, dynamic>> clinicDocRef =fdb.collection('Clinics').doc(selectedClinic);
     Stream<DocumentSnapshot<Map<String, dynamic>>> _clinicStream = clinicDocRef.snapshots();
 
@@ -35,10 +31,9 @@ class Agendar extends StatelessWidget{
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Container(
-                    color: Color.fromARGB(255, 238, 238, 238),
-                  );
+                return Center(child: Text('Loading...'));
               }
+              
               String clinicName = snapshot.data!['name'].toString();
               String clinicAdress = snapshot.data!['adress'].toString();
               String clinicCity = snapshot.data!['city'].toString();
@@ -51,6 +46,26 @@ class Agendar extends StatelessWidget{
               return Container(
                 child: Column(
                   children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        new InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/home');
+                          },
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.chevron_left_outlined),
+                              new Text(
+                                'Voltar',
+                                style: TextStyle(
+                                fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     // CABECALHO
                     Row(
                       children: <Widget>[
@@ -221,7 +236,7 @@ class Agendar extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           ElevatedButton(
-                            onPressed: (){},
+                            onPressed: () => _dialogBuilder(context),
                             child: Text(
                               'Agendar Consulta',
                               style: TextStyle(
@@ -244,5 +259,64 @@ class Agendar extends StatelessWidget{
   }
 }
 
+Future<void> _dialogBuilder(BuildContext context) {
+  final _formKey = GlobalKey<FormState>();
+  String userAuthUID = FirebaseAuth.instance.currentUser!.uid;
+  String userID = userAuthUID.toString();
+  FirebaseFirestore fdb = FirebaseFirestore.instance;
+  CollectionReference pets = fdb.collection('Pets');
+  CollectionReference vets = fdb.collection('Vets');
+  CollectionReference visits = fdb.collection('Visits');
+
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Agende uma Consulta'),
+
+        content: Column(
+          children: <Widget>[
+            Container(
+              height: 300,
+              width: 300,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,                  
+                  children: [
+
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Cancelar'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Enable'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+
+      );
+    },
+  );
+  }
 
         

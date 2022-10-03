@@ -4,6 +4,7 @@ import 'package:ivet/screens/login.dart';
 import 'package:ivet/screens/welcome.dart';
 import 'package:ivet/view/home.dart';
 import 'package:ivet/screens/cadastroUser.dart';
+import 'package:ivet/view/registroPet.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/home' :(context) => Home(),
         '/cadastroUser' :(context) => CadastroUser(),
         '/cadastroComUser' :(context) => CadastroComUser(),
+        '/registrosPet' :(context) => registroPets(),
         },
       );
   }

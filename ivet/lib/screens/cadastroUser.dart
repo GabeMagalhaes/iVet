@@ -267,17 +267,17 @@ Widget comBuild_Content(BuildContext context){
   TextEditingController _cityField =TextEditingController();
   TextEditingController _stateField =TextEditingController();
 
-    Future  <bool> fullRegister (String name, String tel, String adress, String city, String state, String zipcode) async{
+    Future<bool> fullRegister (String name, String tel, String adress, String city, String state, String zipcode) async{
 
-    final user = <String, dynamic>{
-    "name": name,
-    "adress": adress,
-    "city": city,
-    "state": state,
-    "zipcode" : zipcode,
-    "tel" : tel 
+      final user = <String, dynamic>{
+      "name": name,
+      "adress": adress,
+      "city": city,
+      "state": state,
+      "zipcode" : zipcode,
+      "tel" : tel 
 
-  };
+      };
     try{
       FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid).set(user);
       return true;
@@ -286,8 +286,8 @@ Widget comBuild_Content(BuildContext context){
     } catch(e){
       print(e.toString());
       return false;
-    }
-      
+    } 
+
   };
 
 
