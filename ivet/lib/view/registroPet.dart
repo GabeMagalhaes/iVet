@@ -1,6 +1,8 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'pets.dart';
 
 class registroPets extends StatefulWidget{
@@ -11,17 +13,17 @@ class registroPets extends StatefulWidget{
 }
 
 class _registroPetsState extends State<registroPets> {
+  
+  DateTime date = DateTime(2021,01,01);
+  TextEditingController _nameField =TextEditingController();
+  TextEditingController _speciesField =TextEditingController();
+  TextEditingController _breedField =TextEditingController();
+  TextEditingController _genreField =TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
     final _formKey = GlobalKey<FormState>();
-    TextEditingController _nameField =TextEditingController();
-    // VERIFICAR
-    TextEditingController _speciesField =TextEditingController();
-    TextEditingController _breedField =TextEditingController();
-    TextEditingController _genreField =TextEditingController();
-    // VERIFICAR
-    //TextEditingController _birthDateField =TextEditingController();
 
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     FirebaseFirestore fdb = FirebaseFirestore.instance;
@@ -29,9 +31,14 @@ class _registroPetsState extends State<registroPets> {
     String userID = userAuthUID.toString();
     CollectionReference pets = fdb.collection('Pets');
 
-    DateTime _dateTime;
+    
 
-    Future<bool> petRegister (String name, String species, String breed, String genre, Timestamp birthDate, String userID, String userName) async{
+    DocumentReference<Map<String, dynamic>> userDocRef =fdb.collection('Users').doc(userID);
+
+
+
+
+    Future<bool> petRegister (String name, String species, String breed, String genre, Timestamp birthDate, String userID, /* String userName */) async{
     
       final petRegister = <String, dynamic>{
       "name": name,
@@ -40,7 +47,8 @@ class _registroPetsState extends State<registroPets> {
       "genre": genre,
       "birthDate" : birthDate,
       "userID" : userID,
-      "userName" : userName
+      // "userName" : userName
+
     };
 
     try{
@@ -54,6 +62,31 @@ class _registroPetsState extends State<registroPets> {
     }
     
   };
+
+  Future pickDate(BuildContext context) async {
+
+    final initialDate = DateTime.now();
+    final newDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025)
+      );
+
+    if(newDate == null) return;
+
+    setState(() => date = newDate);
+
+  }
+
+  String getDateText(){
+    if (date == DateTime(2021,01,01)){
+      return 'Escolha uma data';
+    } else{
+      return '${date.day}/${date.month}/${date.year}';
+    }
+
+  }
 
     return Scaffold(
       body: Column(
@@ -244,57 +277,26 @@ class _registroPetsState extends State<registroPets> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.only(top:20, left: 35, right: 15),
+                        child: ElevatedButton(
+                          onPressed: () => pickDate(context),
+                          child: Text(getDateText(),style: TextStyle(fontSize: 16),),
+                        ),
+                      ),
                     ],
-                  ),     
-                  Padding(
-                    padding: EdgeInsets.only(top: 10,left: 30, right: 30),
-                    child: ElevatedButton(
-                      child: Text('Escolha uma Data'),
-                      onPressed: (){
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2025),
-                          ).then((date){
-                            setState((){
-                              _dateTime = date!;
-                            });
-                          });
-                      },
-                    ),
-                    //   child: 
-                    //  TextFormField(
-                    //   controller: _nameField,
-                    //   style: TextStyle(fontSize: 11),
-                    //   decoration: const InputDecoration(
-                    //     border: OutlineInputBorder(),
-                    //     enabledBorder: OutlineInputBorder(
-                    //       borderSide: BorderSide(color:Color.fromARGB(255, 238, 238, 238))
-                    //     ),
-                    //     fillColor: Color.fromARGB(255, 238, 238, 238),
-                    //     filled: true,
-                    //   ),
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'Please enter the birthdate of your pet';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
-
-                  ),
-                  SizedBox(height: 35),
+                  ),                
+                  SizedBox(height: 65),
                   ElevatedButton(
-                  onPressed:(){},
-                  //() async {
-                  //   if (_formKey.currentState!.validate()) {
-                  //     bool shouldNavigate = await petRegister();
-                  //     if(shouldNavigate){
-                  //       Navigator.pushNamed(context, '/home');
-                  //     }
-                  //   }                    
-                  // },
+                  onPressed:
+                  () async {
+                    if (_formKey.currentState!.validate()) {
+                      bool shouldNavigate = await petRegister(_nameField.text, _speciesField.text, _breedField.text, _genreField.text, dateConverter(date), userID,);
+                      if(shouldNavigate){
+                        Navigator.pushNamed(context, '/home');
+                      }
+                    }                    
+                  },
                   child: Text(
                     'Registrar',
                     style: TextStyle(
@@ -320,4 +322,9 @@ class _registroPetsState extends State<registroPets> {
       ),
     );
   }
+}
+
+Timestamp dateConverter(DateTime datetime){
+  Timestamp tStamp = Timestamp.fromDate(datetime);
+  return tStamp;
 }
