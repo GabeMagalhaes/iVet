@@ -6,6 +6,8 @@ import 'package:ivet/view/home.dart';
 import 'package:ivet/screens/cadastroUser.dart';
 import 'package:ivet/view/registroPet.dart';
 
+import 'view/agendamento.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); 

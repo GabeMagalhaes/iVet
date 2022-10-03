@@ -25,17 +25,8 @@ class _registroPetsState extends State<registroPets> {
 
     final _formKey = GlobalKey<FormState>();
 
-    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-    FirebaseFirestore fdb = FirebaseFirestore.instance;
     String userAuthUID = FirebaseAuth.instance.currentUser!.uid;
     String userID = userAuthUID.toString();
-    CollectionReference pets = fdb.collection('Pets');
-
-    
-
-    DocumentReference<Map<String, dynamic>> userDocRef =fdb.collection('Users').doc(userID);
-
-
 
 
     Future<bool> petRegister (String name, String species, String breed, String genre, Timestamp birthDate, String userID, /* String userName */) async{
@@ -91,8 +82,29 @@ class _registroPetsState extends State<registroPets> {
     return Scaffold(
       body: Column(
         children: <Widget>[
+          SizedBox(height: 50),
+          Row(
+            children: <Widget>[
+              new InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.chevron_left_outlined),
+                    new Text(
+                      'Voltar',
+                      style: TextStyle(
+                      fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           Padding(
-            padding: EdgeInsets.only(top: 95),
+            padding: EdgeInsets.only(top: 45),
             child: Form(
               key: _formKey,
               child: Column(

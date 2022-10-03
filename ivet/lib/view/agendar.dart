@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ivet/view/agendamento.dart';
 
 class Agendar extends StatelessWidget{
 
@@ -236,7 +237,13 @@ class Agendar extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           ElevatedButton(
-                            onPressed: () => _dialogBuilder(context),
+                            onPressed: (){
+                              Navigator.push(
+                                context, MaterialPageRoute(
+                                  builder: (_) => Agendamento(selectedClinic:selectedClinic),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Agendar Consulta',
                               style: TextStyle(
@@ -258,65 +265,3 @@ class Agendar extends StatelessWidget{
     );
   }
 }
-
-Future<void> _dialogBuilder(BuildContext context) {
-  final _formKey = GlobalKey<FormState>();
-  String userAuthUID = FirebaseAuth.instance.currentUser!.uid;
-  String userID = userAuthUID.toString();
-  FirebaseFirestore fdb = FirebaseFirestore.instance;
-  CollectionReference pets = fdb.collection('Pets');
-  CollectionReference vets = fdb.collection('Vets');
-  CollectionReference visits = fdb.collection('Visits');
-
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Agende uma Consulta'),
-
-        content: Column(
-          children: <Widget>[
-            Container(
-              height: 300,
-              width: 300,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,                  
-                  children: [
-
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Cancelar'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Enable'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-
-      );
-    },
-  );
-  }
-
-        
