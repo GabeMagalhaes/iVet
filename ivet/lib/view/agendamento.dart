@@ -5,10 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ivet/view/agendar.dart';
 
-class Agendamento extends StatelessWidget{
+class Agendamento extends StatefulWidget{
 
     final String selectedClinic;
     const Agendamento({Key? key, required this.selectedClinic}) : super(key: key);
+
+  @override
+  State<Agendamento> createState() => _AgendamentoState();
+}
+
+class _AgendamentoState extends State<Agendamento> {
+
+  var selectedPet;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,9 @@ class Agendamento extends StatelessWidget{
   String userID = userAuthUID.toString();
 
   CollectionReference clinics = fdb.collection('Clinics');
+  CollectionReference pets = fdb.collection('Pets');
   Stream<QuerySnapshot> _clinicsStream = clinics.snapshots();
+  Stream<QuerySnapshot> _petsStream = pets.where('userID', isEqualTo: userID).snapshots();
 
     return Scaffold(
       body: Column(
@@ -31,7 +41,7 @@ class Agendamento extends StatelessWidget{
                 onTap: (){
                   Navigator.push(
                     context, MaterialPageRoute(
-                      builder: (_) => Agendar(selectedClinic:selectedClinic),
+                      builder: (_) => Agendar(selectedClinic:widget.selectedClinic),
                     ),
                   );
                 },
@@ -50,7 +60,7 @@ class Agendamento extends StatelessWidget{
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 25),
+            padding: EdgeInsets.only(top: 45),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -63,7 +73,71 @@ class Agendamento extends StatelessWidget{
               ],
             ),
           ),
-          
+          SizedBox(height: 65),
+          Padding(
+            padding: EdgeInsets.only(),
+            child: StreamBuilder<QuerySnapshot>(
+                  stream: _petsStream,
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+                    if(!snapshot.hasData) {
+                      return Center(child: Text('Loading...'));
+                    } else {
+                      List<DropdownMenuItem> userPets = [];
+                      for(int i=0; i<snapshot.data!.docs.length;i++ ){
+                        DocumentSnapshot snap = snapshot.data!.docs[i];
+                        userPets.add(
+                          DropdownMenuItem(
+                            child: Text(
+                              snap['name'],
+                              style: TextStyle(color: Colors.indigo),
+                            ),
+                            value: '${snap['name']}',
+                          )
+                        );
+                      }
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+
+                        children: <Widget>[
+                          Text(
+                            'Selecione um pet',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          Icon(Icons.pets, color: Colors.indigo,),
+                          SizedBox(width: 20),
+
+                          DropdownButton<dynamic>(
+                            items: userPets,
+                            onChanged: (petValue){
+                              final snackbar = SnackBar(
+                                content: Text('Você selecionou ${petValue}', style: TextStyle(color: Color.fromARGB(255, 245, 247, 245)),),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                              setState((){
+                                selectedPet = petValue;
+                              });
+                            },
+                            value: selectedPet,
+                            isExpanded: false,
+                            hint: new Text(
+                              'Selecione um pet',
+                              style: TextStyle(color: Colors.indigo),
+                            ),
+                          ),
+
+                        ],
+
+                      );
+                    }            
+                  },
+                ),
+          ),  
         ],
       ),
     );
