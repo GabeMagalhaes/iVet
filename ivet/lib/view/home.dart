@@ -19,6 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   int currentIndex = 0;
   final screens = [
     TabBarView(
@@ -34,8 +35,10 @@ class _HomeState extends State<Home> {
 
     Center(
       child: Text(
-        'SATAN',
+
+        'Conta',
         style: TextStyle(fontSize: 60),
+
       ),
     ),
 

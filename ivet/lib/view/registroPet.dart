@@ -242,7 +242,7 @@ class _registroPetsState extends State<registroPets> {
                       },
                     ),
                   ),
-                                    Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(

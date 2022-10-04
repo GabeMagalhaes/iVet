@@ -145,7 +145,7 @@ class Atividade extends StatelessWidget {
           ),
 
           Text(
-            'Novidades',
+            'Campanhas',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -162,11 +162,11 @@ class Atividade extends StatelessWidget {
                   height: 60,
                 ),
                 title: Text(
-                  'Campanha de vacinação',
+                  'Campanhas de vacinação',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium.',
+                  'Campanhas de vacinação que estão disponiveis',
                   style: TextStyle(fontSize: 11),
                 ),
                 trailing: IconButton(
@@ -181,11 +181,11 @@ class Atividade extends StatelessWidget {
                   height: 60,
                 ),
                 title: Text(
-                  'Campanha de castração',
+                  'Campanhas de castração',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium.',
+                  'Precisando castrar seu animalzinho? confira as campanhas disponiveis',
                   style: TextStyle(fontSize: 11),
                 ),
                 trailing: IconButton(
@@ -200,11 +200,11 @@ class Atividade extends StatelessWidget {
                   height: 60,
                 ),
                 title: Text(
-                  'Campanha de adoção',
+                  'Campanhas de adoção',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium.',
+                  'Aqui você encontrará todas as campanhas de adoções ativas no momento',
                   style: TextStyle(fontSize: 11),
                 ),
                 trailing: IconButton(

@@ -69,25 +69,16 @@ class Agendar extends StatelessWidget{
                     ),
                     // CABECALHO
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 65),
-                          // LOGO DA CLINICA
-                          child : Container(
-                            height: 125,
-                            width: 125,
-                            color: Colors.blue,
-                          )
-                        ),
-                        Spacer(),
                         Padding(
                           padding: EdgeInsets.only(top: 65),
                           // INFOS DA CLINICA
                           child: Container(
-
                             height: 125,
                             width: 230,
-                            child: Column(
+                            child: 
+                            Column(
                               children: <Widget>[
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
